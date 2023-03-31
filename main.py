@@ -14,7 +14,7 @@ import billnums
 custids = [4,3,2,1]
 url = 'http://ishapan.com:9099/BSTCS/student/CMO/C/CMO_C_5.jsp'
 # 设置cookie
-cookie  = '63FBDE02DB70B4886D4F54E76C78A260'
+cookie  = 'F3B0F45B9185DE37BB1894E6C89C5387'
 
 
 headers = {
@@ -25,12 +25,12 @@ headers = {
 choose =["商务","白领","青年","老年"]
 
 groups_dev = []
-courseid = 358
+courseid = 365
 
 # 设置小组数
-groups = 36
+groups = 51
 # 设置起始公司 firstid
-firscompanyid = 2368
+firscompanyid = 2631
 companyids = [i for i in range(firscompanyid, firscompanyid + groups)]
 
 
@@ -40,7 +40,8 @@ def getAdinput(companyid,custid):
         'courseid': '%s' % courseid, #每次比赛不同id
         'companyid': '%s' % companyid, #公司id
         'time': 1, # 季度
-        'custid':'%s' % custid
+        'custid':'%s' % custid,
+        'studentid': 4369  # 格式必需
     }
     response = requests.get(url=url, params=data, headers=headers)
     content = response.text
@@ -54,7 +55,8 @@ def getCustAvgAd():
     products=getCustDevNum()
     for i in range(len(list)):
         # print(list[i],products[i]+"\n")
-        print(choose[i] +"平均广告投入:",round(list[i]/products[i]))
+        # print(choose[i] +"平均广告投入:",round(list[i]/products[i]))
+        print(choose[i] + "平均广告投入:", round(list[i] / 43))
 
 # 获取每个消费群体的平均投入广告
 def getCustAd():
@@ -68,7 +70,7 @@ def getCustAd():
                 item = item.strip()
                 if item != '':
                     items.append(item)
-                items.append(item)
+        print(items)
         for i in items:
             if i != '':
                 i = i.replace(',', '')
@@ -102,7 +104,7 @@ def getCustDevNum():
             for item in result:
                 items.append(item)
         # print(items)
-        print(len(items))
+        # print(len(items))
         cust_dev_nums.append(len(items))
     return cust_dev_nums
 
@@ -152,7 +154,7 @@ if __name__ == '__main__':
     # 开局！
     # 1.
     # getGroupDevNum()
-    # filename = '各小组产品设计情况_t1.xlsx'  # 每季度产生一个excel
+    # filename = '各小组产品设计情况_t2.xlsx'  # 每季度产生一个excel
     # xw_toExcel(groups_dev, filename)
 
     # 2.
@@ -161,6 +163,7 @@ if __name__ == '__main__':
     # 3.
     # getCustAvgAd()
 
+    # Q4
     # 4.
     # billnums.getgetBillforMarket()
 
@@ -169,7 +172,3 @@ if __name__ == '__main__':
 
     # 6.
     # Money.getCompanyMoney()
-
-    # 7.
-
-

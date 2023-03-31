@@ -4,6 +4,6 @@
 # @File : config
 
 def Config():
-    cookie=''
-    crouseid=''
+    cookie='F3B0F45B9185DE37BB1894E6C89C5387'
+    crouseid='365'
     companyids =[]

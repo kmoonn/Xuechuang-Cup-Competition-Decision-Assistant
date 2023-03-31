@@ -7,13 +7,13 @@ import requests
 from lxml import etree
 
 # 设置cookie
-cookie  = '63FBDE02DB70B4886D4F54E76C78A260'
+cookie  = 'F3B0F45B9185DE37BB1894E6C89C5387'
 
 url = 'http://ishapan.com:9099/BSTCS/student/CMO/C/CMO_C_1.jsp'
 data = {
-    'courseid': 358,  # 每次比赛不同id
+    'courseid': 365,  # 每次比赛不同id
     # 'studentid': 496,
-    'companyid':2399,
+    'companyid':2665,
     # 'time':1
     }
 headers = {
@@ -21,7 +21,7 @@ headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
 }
 
-# 市场开发情况  投资表现
+
 def getProductEvaluation():
     response = requests.get(url=url, params=data, headers=headers)
     content = response.text

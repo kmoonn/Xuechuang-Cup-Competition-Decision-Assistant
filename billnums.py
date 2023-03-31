@@ -8,13 +8,13 @@ from lxml import etree
 
 url = 'http://ishapan.com:9099/BSTCS/ReportAction.do'
 headers = {
-    'Cookie': 'JSESSIONID=E284A37D93CA6FC285AC12290EF0AAF9',  # 设置cookie！！！
+    'Cookie': 'JSESSIONID=F3B0F45B9185DE37BB1894E6C89C5387',  # 设置cookie！！！
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
 }
 
 def getBill(companyid,customerid):
     data = {
-        'courseid': 358,  # 每次比赛不同id
+        'courseid': 365,  # 每次比赛不同id
         # 'studentid': 4936,
         'companyid':companyid,
         'customerid':customerid ,#all

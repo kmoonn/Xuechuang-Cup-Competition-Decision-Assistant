@@ -7,13 +7,13 @@ import requests
 from lxml import etree
 
 # 设置cookie
-cookie  = '63FBDE02DB70B4886D4F54E76C78A260'
+cookie  = 'F3B0F45B9185DE37BB1894E6C89C5387'
 
 url = 'http://ishapan.com:9099/BSTCS/student/CFO/A/CFO_A_1.jsp'
 data = {
     'courseid': 358,  # 每次比赛不同id
     # 'studentid': 4936,
-    'companyid':2399,
+    'companyid':2665,
     # 'time':1
     }
 headers = {
