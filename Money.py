@@ -7,13 +7,13 @@ import requests
 from lxml import etree
 
 # 设置cookie
-cookie  = 'F3B0F45B9185DE37BB1894E6C89C5387'
+cookie  = 'BD1A559A8EE07227B9F883F0D9C12D91'
 
-url = 'http://ishapan.com:9099/BSTCS/student/CFO/A/CFO_A_1.jsp'
+url = 'http://172.16.129.50:8088/BSTCS/student/CFO/A/CFO_A_1.jsp'
 data = {
-    'courseid': 358,  # 每次比赛不同id
-    # 'studentid': 4936,
-    'companyid':2665,
+    'courseid': 387,  # 每次比赛不同id
+    'studentid': 4936,
+    'companyid':3469,
     # 'time':1
     }
 headers = {
@@ -30,7 +30,6 @@ def getCompanyMoney():
     tree = etree.HTML(content)
     result = tree.xpath('//tr[@class="tablebodytext"]/td[2]/text()')
     qq = tree.xpath('//tr[@class="tablebodytext"]/td[5]/text()')
-    result = result[:-1]
     result = [str(item) for item in result]
     for i in range(0, len(result)):
         result[i] = result[i].replace(',', '')

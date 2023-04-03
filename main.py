@@ -12,9 +12,9 @@ import billnums
 
 #老年1、青年2、白领3、商务4
 custids = [4,3,2,1]
-url = 'http://ishapan.com:9099/BSTCS/student/CMO/C/CMO_C_5.jsp'
+url = 'http://172.16.129.50:8088/BSTCS/student/CMO/C/CMO_C_5.jsp'
 # 设置cookie
-cookie  = 'F3B0F45B9185DE37BB1894E6C89C5387'
+cookie  = 'BD1A559A8EE07227B9F883F0D9C12D91'
 
 
 headers = {
@@ -25,12 +25,12 @@ headers = {
 choose =["商务","白领","青年","老年"]
 
 groups_dev = []
-courseid = 365
+courseid = 387
 
 # 设置小组数
-groups = 51
+groups = 37
 # 设置起始公司 firstid
-firscompanyid = 2631
+firscompanyid = 3460
 companyids = [i for i in range(firscompanyid, firscompanyid + groups)]
 
 
@@ -56,7 +56,7 @@ def getCustAvgAd():
     for i in range(len(list)):
         # print(list[i],products[i]+"\n")
         # print(choose[i] +"平均广告投入:",round(list[i]/products[i]))
-        print(choose[i] + "平均广告投入:", round(list[i] / 43))
+        print(choose[i] + "平均广告投入:", round(list[i] / 31))   #修改 实际小组数
 
 # 获取每个消费群体的平均投入广告
 def getCustAd():
@@ -135,40 +135,31 @@ def xw_toExcel(data,filename):
 
 # 程序入口
 if __name__ == '__main__':
-    '''
-    # 默认顺序：商务->白领->青年->老年
-
-    可选功能
-    - 1. getGroupDevNum            各小组产品设计情况
-    - 2. getCustDevNum             各消费群体的产品设计数量
-    - 3. getCustAvgAd              每季度各消费群体广告投入情况
-    - 4. getBillforMarket          未开市场小组订单数
-    - 5. getBillforRecognition     未资质认证小组订单数
-    - 6. getCompanyMoney           账款贴现
-    - 7. getProductEvaluation      产品评价
-
-    TODO:
-    - 
-    '''
-
-    # 开局！
-    # 1.
-    # getGroupDevNum()
-    # filename = '各小组产品设计情况_t2.xlsx'  # 每季度产生一个excel
-    # xw_toExcel(groups_dev, filename)
-
-    # 2.
-    # getCustDevNum()
-
-    # 3.
-    # getCustAvgAd()
-
-    # Q4
-    # 4.
-    # billnums.getgetBillforMarket()
-
-    # 5.
-    # billnums.getBillforRecognition()
-
-    # 6.
-    # Money.getCompanyMoney()
+        n = eval(input("请输入相应序号："))
+        # 默认顺序：商务->白领->青年->老年
+        '''
+        可选功能
+        - 1. getGroupDevNum 各小组产品设计情况
+        - 2. getCustDevNum 各消费群体的产品设计数量    （第1，2季度）
+        - 3. getCustAvgAd  每季度各消费群体广告投入情况  （翻季后，即季度初）
+        - 4. getBillforMarket 未开市场小组订单数     （第3季度）
+        - 5. getBillforRecognition 未资质认证小组订单数   （第3季度）
+        - 6. getCompanyMoney 账款贴现    （交单完成之后）
+        - 7. getProductEvaluation 产品评价 Todo
+        '''
+        if n==1:
+            getGroupDevNum()
+            filename = '各小组产品设计情况_t1.xlsx'  # 每季度产生一个excel
+            xw_toExcel(groups_dev, filename)
+        elif n==2:
+            getCustDevNum()
+        elif n==3:
+            getCustAvgAd()
+        elif n==4:
+            billnums.getgetBillforMarket()
+        elif n==5:
+            billnums.getBillforRecognition()
+        elif n==6:
+            Money.getCompanyMoney()
+        else:
+            print("Action!")

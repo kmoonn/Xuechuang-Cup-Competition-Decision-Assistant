@@ -4,16 +4,16 @@
 # @File : avgAd
 
 import requests
-import xlsxwriter as xw
 from lxml import etree
 
 
+# 获取各小组当季广告投入情况
 
 #老年1、青年2、白领3、商务4
 custids = [4,3,2,1]
-url = 'http://ishapan.com:9099/BSTCS/student/CMO/A/CMO_A_2.jsp'
+url = 'http://172.16.129.50:8088/BSTCS/student/CMO/A/CMO_A_2.jsp'
 # 设置cookie
-cookie  = 'F3B0F45B9185DE37BB1894E6C89C5387'
+cookie  = 'BD1A559A8EE07227B9F883F0D9C12D91'
 
 headers = {
     'Cookie': 'JSESSIONID=%s' % cookie,
@@ -23,10 +23,10 @@ headers = {
 choose =["商务","白领","青年","老年"]
 
 groups_dev = []
-courseid = 365
+courseid = 387
 
 # 设置小组数
-groups = 51
+groups = 37
 # 设置起始公司 firstid
 firscompanyid = 2631
 companyids = [i for i in range(firscompanyid, firscompanyid + groups)]
@@ -43,6 +43,8 @@ def getAdinput(companyid,custid):
     content = response.text
     tree = etree.HTML(content)
     result = tree.xpath('//a/text()')
+    for item in result:
+        item.strip()
     return result
 
 print(getAdinput(2660,4))

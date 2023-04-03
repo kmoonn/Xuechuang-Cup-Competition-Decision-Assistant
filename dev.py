@@ -3,15 +3,17 @@
 # @Author : Kmoon_Hs
 # @File : dev
 
+
+
 import requests
 from lxml import etree
 
 # 设置cookie
-cookie  = '63FBDE02DB70B4886D4F54E76C78A260'
+cookie  = 'BD1A559A8EE07227B9F883F0D9C12D91'
 
-url = 'http://ishapan.com:9099/BSTCS/student/CEO/B/CEO_B_4.jsp'
+url = 'http://172.16.129.50:8088/BSTCS/student/CEO/B/CEO_B_4.jsp'
 data = {
-    'courseid': 358,  # 每次比赛不同id
+    'courseid': 387,  # 每次比赛不同id
     'studentid': 4936,
     }
 headers = {
