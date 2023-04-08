@@ -7,19 +7,19 @@
 
 import requests
 from lxml import etree
+import config as c
 
-# 设置cookie
-cookie  = 'BD1A559A8EE07227B9F883F0D9C12D91'
+param = {'url':'','cookie':'','courseid':0,'companynums':0,'firstcompany':0,'choose':[],'custids':[],'headers':[],'mycompanyid':0}
 
-url = 'http://172.16.129.50:8088/BSTCS/student/CEO/B/CEO_B_4.jsp'
+c.Config(param)
+
+headers = param['headers']
+
+url = 'http://%s/BSTCS/student/CEO/B/CEO_B_4.jsp' %param['url']
 data = {
-    'courseid': 387,  # 每次比赛不同id
-    'studentid': 4936,
+    'courseid': param['courseid'],  # 每次比赛不同id
+    'studentid': 1082,
     }
-headers = {
-    'Cookie': 'JSESSIONID=%s' % cookie,
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
-}
 
 # 市场开发情况  投资表现
 def getmarketDev():
@@ -59,10 +59,11 @@ def getDict_market():
     result,companyids = getmarketDev()
     for i in range(len(result)):
         money = int(result[i])
-        if money<180000:
-            companyid_market[companyids[i]]= 2
-        elif 180000 <= money < 240000:
-            companyid_market[companyids[i]] = 1
+        print(money)
+        if money<160000:
+            companyid_market[companyids[i]]= 1
+        # elif 160000 <= money < 240000:
+        #     companyid_market[companyids[i]] = 1
         else:
             companyid_market[companyids[i]] = 0
     return companyid_market

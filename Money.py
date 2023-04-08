@@ -5,26 +5,27 @@
 
 import requests
 from lxml import etree
+import config as c
 
-# 设置cookie
-cookie  = 'BD1A559A8EE07227B9F883F0D9C12D91'
+param = {'url':'','cookie':'','courseid':0,'companynums':0,'firstcompany':0,'choose':[],'custids':[],'headers':[],'mycompanyid':0}
 
-url = 'http://172.16.129.50:8088/BSTCS/student/CFO/A/CFO_A_1.jsp'
+c.Config(param)
+
+headers = param['headers']
+
+url = 'http://%s/BSTCS/student/CFO/A/CFO_A_1.jsp' %param['url']
 data = {
-    'courseid': 387,  # 每次比赛不同id
-    'studentid': 4936,
-    'companyid':3469,
+    'courseid': param['courseid'],  # 每次比赛不同id
+    'studentid': 4096,
+    'companyid':param['mycompanyid'],
     # 'time':1
     }
-headers = {
-    'Cookie': 'JSESSIONID=%s' % cookie,
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
-}
 
 # 市场开发情况  投资表现
 def getCompanyMoney():
     Q1 = 0
     Q2 = 0
+    Q3 = 0
     response = requests.get(url=url, params=data, headers=headers)
     content = response.text
     tree = etree.HTML(content)
@@ -37,6 +38,8 @@ def getCompanyMoney():
     for j in range(len(result)):
         if qq[j] == "1季度":
             Q1 += result[j]
+        elif qq[j] == "2季度":
+            Q2 +=result[j]
         else:
-            Q2 += result[j]
-    print(Q1,Q2)
+            Q3+= result[j]
+    print(Q1,Q2,Q3)

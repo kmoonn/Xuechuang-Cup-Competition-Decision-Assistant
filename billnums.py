@@ -5,16 +5,18 @@
 
 import requests
 from lxml import etree
+import config as c
 
-url = 'http://172.16.129.50:8088/BSTCS/ReportAction.do'
-headers = {
-    'Cookie': 'JSESSIONID=BD1A559A8EE07227B9F883F0D9C12D91',  # 设置cookie！！！
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36'
-}
+param = {'url':'','cookie':'','courseid':0,'companynums':0,'firstcompany':0,'choose':[],'custids':[],'headers':[],'mycompanyid':0}
+
+c.Config(param)
+
+url = 'http://%s/BSTCS/ReportAction.do' %param['url']
+headers = param['headers']
 
 def getBill(companyid,customerid):
     data = {
-        'courseid': 387,  # 每次比赛不同id
+        'courseid': param['courseid'],  # 每次比赛不同id
         # 'studentid': 4936,
         'companyid':companyid,
         'customerid':customerid ,#all
@@ -43,7 +45,7 @@ def getgetBillforMarket():
     # 计算未开市场小组的订单数
     # print(companyid_market)
     print("未开市场小组数: ", sum(companyid_market.values()))
-    for custid in [4,3,2,1]:
+    for custid in [3,2,1]:
         noMarketBills = 0
         for companyid in companyid_market.keys():
             temp = (getBill(companyid,custid) * companyid_market[companyid])
@@ -55,7 +57,7 @@ def getBillforRecognition():
     # 计算未开资质小组的订单数
     # print(companyid_recognition)
     print("未开资质小组数: ", sum(companyid_recognition.values()))
-    for custid in [4,3]:
+    for custid in [1]:
         noRecognitionBills = 0
         for companyid in companyid_recognition.keys():
             temp = (getBill(companyid,custid) * companyid_recognition[companyid])
